@@ -1,0 +1,4 @@
+Вход в виртуальную среду директории:
+venv\Scripts\activate.bat
+Вызов помощи argparse:
+python tw_argparse.py -h
