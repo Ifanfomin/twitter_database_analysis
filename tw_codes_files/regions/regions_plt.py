@@ -6,7 +6,9 @@ cur = conn.cursor()
 
 colors = ['g', 'r', 'c', 'm', 'y', 'orange']
 
-regions = ['DE', 'RU', 'USA', 'UA', 'Japan', 'China']
+regions = ['Japan', 'China', 'RU', 'UA', 'USA', 'DE'] # , 'RU', 'USA', 'UA', 'Japan', 'China'
+
+norm_regions = ['Япония (Japan)', 'Китай (China)', 'Россия (RU)', 'Украина (UA)', 'Америка (USA)', 'Германия (DE)']
 
 for reg in regions:
     hours = []
@@ -30,10 +32,19 @@ for reg in regions:
     print(hours)
     print(creatings)
 
+    summ_registrations = sum(creatings)
+
+    for i in range(len(creatings)):
+        creatings[i] = (creatings[i] / summ_registrations) * 100
+
+    print(hours)
+    print(creatings)
+
     print(reg)
 
-    plt.plot(hours, creatings, color=colors[regions.index(reg)], marker='o', linestyle='solid')
+    plt.plot(hours, creatings, color=colors[regions.index(reg)], marker='o', linestyle='solid', label=norm_regions[regions.index(reg)])
 plt.xlabel('час')
 plt.ylabel('создано аккаунтов тысяч')
+plt.legend()
 plt.show()
 # plt.savefig('accounts_creating_hours.png')
