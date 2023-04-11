@@ -7,19 +7,19 @@ def create_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-f', '--function', choices=['year', 'day', 'hour', 'years', 'days', 'hours'],
-                        required=True, type=str, nargs=1, help='What function you want to use?')
+                        required=True, type=str, nargs=1, help='Варианты функций.')
     parser.add_argument('-Y', '--year', choices=['200'+str(i) for i in range(6, 10)]+['20'+str(i) for i in range(10, 21)],
-                        type=str, help='What year you want to see?')
+                        type=str, help='По какому году нужен график?')
     parser.add_argument('-D', '--day', choices=['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                        type=str, help='What day you want to see?')
+                        type=str, help='По какому дню недели нужен график?')
     parser.add_argument('-H', '--hour', choices=[str(i) for i in range(24)],
-                        type=str, help='What hour you want to see?')
+                        type=str, help='По какому часу нужен график?')
     parser.add_argument('-YS', '--years', choices=['200'+str(i) for i in range(6, 10)]+['20'+str(i) for i in range(10, 21)],
-                        nargs='+', help='What years you want to see?')
+                        nargs='+', help='По каким годам нужен график?')
     parser.add_argument('-DS', '--days', choices=['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                        nargs='+', help='What days you want to see?')
+                        nargs='+', help='По каким общим дням недели нужен график?')
     parser.add_argument('-HS', '--hours', choices=[str(i) for i in range(24)],
-                        nargs='+', help='What hours you want to see?')
+                        nargs='+', help='За какой промежуток общего дня нужен график?')
     return parser
 
 
@@ -68,7 +68,7 @@ def tw_years(years):
     year_creating = []
     for i in range(len(years)):
         year = years[i]
-        creats = tw_year(year) // 1000
+        creats = tw_year(year) / 5500000 * 100
         year_creating.append(creats)
     plot(x=years, y=year_creating, name='year')
 
@@ -76,7 +76,7 @@ def tw_days(days):
     day_creating = []
     for i in range(len(days)):
         day = days[i]
-        creats = tw_day(day) // 1000
+        creats = tw_day(day) / 5500000 * 100
         day_creating.append(creats)
     plot(x=days, y=day_creating, name='day')
 
@@ -84,18 +84,31 @@ def tw_hours(hours):
     hour_creating = []
     for i in range(len(hours)):
         hour = hours[i]
-        creats = tw_hour(hour) // 1000
+        creats = tw_hour(hour) / 5500000 * 100
         hour_creating.append(creats)
         # print(hour)
         # print(creats)
     plot(x=hours, y=hour_creating, name='hour')
 
 def plot(x, y, name):
-    plt.plot(x, y, color='green', marker='o', linestyle='solid')
-    plt.title('number of accounts created per ' + name)
-    plt.xlabel(name + 's')
-    plt.ylabel('thousands accounts created')
-    plt.show()
+    if name == 'year':
+        plt.plot(x, y, color='green', marker='o', linestyle='solid')
+        plt.title('')
+        plt.xlabel('год')
+        plt.ylabel('создано аккаунтов в процентах')
+        plt.show()
+    if name == 'day':
+        plt.plot(x, y, color='green', marker='o', linestyle='solid')
+        plt.title('')
+        plt.xlabel('день недели')
+        plt.ylabel('создано аккаунтов в процентах')
+        plt.show()
+    if name == 'hour':
+        plt.plot(x, y, color='green', marker='o', linestyle='solid')
+        plt.title('')
+        plt.xlabel('время суток')
+        plt.ylabel('создано аккаунтов в процентах')
+        plt.show()
     #plt.savefig('accounts_creating_days.png')
 
 if __name__ == '__main__':
