@@ -1,8 +1,11 @@
 from matplotlib import pyplot as plt
 
-plt.plot([0, 1, 2, 3, 4, 5], [0, 1, 2, 3, 4, 5], color='green', marker='o', linestyle='solid')
+x = [i for i in range(24)]
+y = x
 
-plt.plot([0, 1, 2, 3, 4, 5], [5, 4, 3, 2, 1, 0], color='green', marker='o', linestyle='solid')
+plt.plot(x, y, color='green', marker='o', linestyle='solid')
+#
+# plt.plot(x, [5, 4, 3, 2, 1, 0], color='green', marker='o', linestyle='solid')
 
 
 plt.xlabel('Часы')
