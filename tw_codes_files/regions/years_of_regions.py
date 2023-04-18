@@ -26,3 +26,10 @@ for reg in regions:
         years_creats[i] = (years_creats[i] / summ_registrations) * 100
     plt.plot(years, years_creats, color=colors[regions.index(reg)], marker='o', linestyle='solid',
              label=norm_regions[regions.index(reg)])
+    
+plt.locator_params(axis='x', nbins=len(years) + 5)
+plt.title('')
+plt.xlabel('год')
+plt.ylabel('создано аккаунтов в процентах')
+plt.legend()
+plt.show()
