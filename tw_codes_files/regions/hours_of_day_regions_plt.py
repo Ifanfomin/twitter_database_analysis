@@ -44,7 +44,7 @@ for reg in regions:
 
     plt.plot(hours, creatings, color=colors[regions.index(reg)], marker='o', linestyle='solid', label=norm_regions[regions.index(reg)])
 plt.xlabel('час')
-plt.ylabel('создано аккаунтов тысяч')
+plt.ylabel('создано аккаунтов проц')
 plt.legend()
 plt.show()
 # plt.savefig('accounts_creating_hours.png')
