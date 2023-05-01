@@ -10,7 +10,7 @@ regions = ['Japan', 'China', 'UK', 'RU', 'UA', 'FR', 'DE'] # , 'RU', 'USA', 'UA'
 
 norm_regions = ['Япония (Japan)', 'Китай (China)', 'Соед. Кор. (UK)', 'Россия (RU)', 'Украина (UA)', 'Франция (FR)', 'Германия (DE)']
 
-years = [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
+years = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
 
 print(years)
 
@@ -18,7 +18,7 @@ for reg in regions:
     years_creats = []
     print(reg)
     for year in years:
-        query = 'SELECT count() FROM accounts WHERE created_at LIKE "%' + str(year) + '%" AND location LIKE "%' + reg + '%"'
+        query = 'SELECT count() FROM accounts WHERE created_at LIKE "%' + year + '%" AND location LIKE "%' + reg + '%"'
         cur.execute(query)
         year_creats = cur.fetchone()[0]
         years_creats.append(year_creats)
