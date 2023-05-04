@@ -8,7 +8,7 @@ with open(r'D:\projects\base\twitter.json') as tw_file:
     try:
         # for i in range(4757775): # 2281511, 4152431, 4757774
         #     tw_file.readline()
-        # tw_str = tw_file.readline()
+        tw_str = tw_file.readline()
         while tw_str:
             tw = json.loads(tw_str)
             tw_str = tw_file.readline()
